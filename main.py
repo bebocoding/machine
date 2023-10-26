@@ -6,8 +6,12 @@ import numpy as np
 import pandas as pd
 import pickle
 import json
+import subprocess
 
 # Create the app object
+
+subprocess.run(["python", "model.py"])
+
 app = FastAPI()
 pickle_in = open("classifier.pkl",'rb')
 classifier = pickle.load(pickle_in)
@@ -42,8 +46,4 @@ async def predict_workout(user_data:User):
     return exercise_data
 
 
-
-
-if __name__ == '__main__':
-    uvicorn.run(app, host='127.0.0.1',port=8000)
 
