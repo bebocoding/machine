@@ -7,13 +7,13 @@ from sklearn.preprocessing import OneHotEncoder
 import pickle
 
 # loading local data
-df = pd.read_csv("user.csv")
+df = pd.read_csv("user_train.csv")
 
 
 
-# Data Preparation
-df.drop(columns=["name","muscle_group"],inplace=True)
-features = df.drop(columns="workout").columns
+df.drop(columns=["Name"],inplace=True)
+
+features = df.drop(columns="plan").columns
 
 # categorical and numerical featuers
 num_features = [col for col in features if df[col].dtype != "object"]
@@ -21,8 +21,9 @@ num_features = [col for col in features if df[col].dtype != "object"]
 cat_features = [col for col in features if df[col].dtype=="object"]
 
 
-X = df.drop(columns=["workout"])
-y = df["workout"]
+
+X = df.drop(columns=["plan"])
+y = df["plan"]
 
 
 # transforming the data part
